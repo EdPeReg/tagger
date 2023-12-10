@@ -150,6 +150,9 @@ class Tagger:
             if option.lower() == "y":
                 print(f"Removing {f} ...")
                 f.unlink(missing_ok=True)
+                # TODO: Removing the file from original path is repeated code
+                # Remove the file from the original path
+                Path.unlink(self.path.joinpath(f.name), missing_ok=True)
             else:
                 # Get the tag Subject
                 process_exif, args = self.__run_subprocess(
